@@ -1,0 +1,4 @@
+if
+else
+ja  tem  uns 40 pao
+em casa
