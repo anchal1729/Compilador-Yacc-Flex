@@ -1,31 +1,43 @@
-digit [0-9]
-ponto [.]
-aspas ["]
-letter [a-zA-z]
-string  \"[^"\n]*["\n]
-op [M][A][I][S]|[M][E][N][O][S]|[V][E][Z][E][S]|[D][I][V]|[R][E][S][T][O]
-ws     [ \t\n]
+%{
+#include <stdlib.h>
+#include "calc3.h"
+#include "sintatico.tab.h"
+void yyerror(char *);
+%}
 %%
-ws {return 1;}
-"if" { printf ("if\n"); return 2;}
-"else" { printf("else\n"); return 3;}
-{op}      {printf ("op: %s\n",yytext); return 8;}
-{letter}({letter}|{digit})* {printf("id: %s\n",yytext); return 4;}
-{digit}+       { printf ("inteiro: %s\n",yytext); return 5;}
-{digit}+{ponto}{digit}+       { printf ("real: %s\n",yytext); return 6;}
-{string}  {printf ("string: %s\n",yytext); return 7;}
+[a-z]       {
+                yylval.sIndex = *yytext - 'a';
+                return VARIABLE;
+            }
+[0-9]+      {
+                yylval.iValue = atoi(yytext);
+                return INTEGER;
+            }
+[-()=+*/;{}.] {
+                return *yytext;
+             }
 
+"MAIS"                  return '+';
+"MENOS"                  return '+';
+"VEZES"                  return '*';
+"DIV"                   return '/';
+"RESTO"                 return '%';
+"MAIORIGUAL"            return GE;
+"ABREPAREN"             return '(';
+"FECHAPAREN"            return ')';
+"RECEBE"                return '=';
+"MAIOR"                 return '>';
+"MENOR"                 return '<';
+"MENORIGUAL"            return LE;
+"IGUAL"            return EQ;
+"NIGUAL"            return NE;
+"bixofeio"         return WHILE;
+"se"            return IF;
+"senao"          return ELSE;
+"print"         return PRINT;
+[ \t\n]+        ;       /* ignore whitespace */
+.               yyerror("Unknown character");
 %%
-
-int yywrap (void) {return 1;}
-
-int main(int argc, char*argv[]){
-
- yyin= fopen (argv[1],"r");
- int tokentag;
- tokentag=1;
- while (tokentag!=0)
-        tokentag = yylex();
-return 0;
-
+int yywrap(void) {
+    return 1;
 }

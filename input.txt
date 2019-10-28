@@ -1,0 +1,5 @@
+x = 0; 
+bixofeio ABREPARENx MENOR 3FECHAPAREN { 
+    print x; 
+    x = x MAIS 1; 
+} 
