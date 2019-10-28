@@ -1,5 +1,15 @@
-x = 0; 
-bixofeio ABREPARENx MENOR 3FECHAPAREN { 
-    print x; 
-    x = x MAIS 1; 
-} 
+a = 1; 
+b= 3;
+c = a+b;
+ar =0;
+Imprime c;
+
+Enquanto ABREPARENa MENOR 3FECHAPAREN { 
+    Imprime a; 
+    a = a MAIS 1; 
+}
+Imprime c;
+Imprime ar; 
+
+
+

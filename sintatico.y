@@ -1,4 +1,4 @@
- 
+
 %{
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,10 +13,12 @@ int ex(nodeType *p);
 int yylex(void);
 void yyerror(char *s);
 int sym[26];                    /* symbol table */
+int iterator;
 %}
 %union {
     int iValue;                 /* integer value */
     char sIndex;                /* symbol table index */
+    float fValue;
     nodeType *nPtr;             /* node pointer */
 };
 %token <iValue> INTEGER
