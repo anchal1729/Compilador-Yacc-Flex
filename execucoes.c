@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "calc3.h"
-#include "sintatico.tab.h" 
+#include "definicoes.h"
+#include "sintatico.tab.h"
 int ex(nodeType *p) {
     if (!p) return 0;
     switch(p->type) {
@@ -17,6 +17,8 @@ int ex(nodeType *p) {
                     return 0;
       case     PRINT:               printf("%d\n",     ex(p->opr.op[0]));
                     return 0;
+      case     SCAN:
+                  return ex(p->opr.op[0]);
       case ';':     ex(p->opr.op[0]);
                     return ex(p->opr.op[1]);
       case '=':     return sym[p->opr.op[0]->id.i] =

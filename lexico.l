@@ -1,6 +1,6 @@
 %{
 #include <stdlib.h>
-#include "calc3.h"
+#include "definicoes.h"
 #include "sintatico.tab.h"
 void yyerror(char *);
 %}
@@ -18,7 +18,7 @@ void yyerror(char *);
              }
 
 "MAIS"                  return '+';
-"MENOS"                  return '+';
+"MENOS"                  return '-';
 "VEZES"                  return '*';
 "DIV"                   return '/';
 "RESTO"                 return '%';
@@ -37,6 +37,8 @@ void yyerror(char *);
 "Se"            return IF;
 "Senao"          return ELSE;
 "Imprime"         return PRINT;
+
+
 [ \t\n]+        ;       /* ignore whitespace */
 .               yyerror("Unknown character");
 %%

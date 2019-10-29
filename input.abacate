@@ -1,0 +1,26 @@
+a RECEBE 2; 
+b RECEBE 6;
+c RECEBE a+b;
+d RECEBE b-a;
+e RECEBE b*a;
+f RECEBE b/a;
+Imprime c;
+Imprime d;
+Imprime e;
+Imprime f;
+Enquanto ABREPAREN a MENOR 10 FECHAPAREN ABRECHAVE 
+    Imprime a; 
+    a RECEBE a MAIS 1; 
+FECHACHAVE
+Imprime b;
+Imprime 25; 
+
+Se ABREPAREN a MAIOR b FECHAPAREN ABRECHAVE
+     Imprime a;
+
+FECHACHAVE
+Senao ABRECHAVE
+       Imprime b;
+FECHACHAVE
+
+

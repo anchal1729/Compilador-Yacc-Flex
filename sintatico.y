@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include "calc3.h"
+#include "definicoes.h"
 /* prototypes */
 nodeType *opr(int oper, int nops, ...);
 nodeType *id(int i);
@@ -23,7 +23,7 @@ int iterator;
 };
 %token <iValue> INTEGER
 %token <sIndex> VARIABLE
-%token WHILE IF PRINT
+%token WHILE IF PRINT SCAN
 %nonassoc IFX
 %nonassoc ELSE
 %left GE LE EQ NE '>' '<'
@@ -43,7 +43,7 @@ stmt:
     ';'                     { $$ = opr(';', 2, NULL, NULL); }
   | expr ';'                { $$ = $1; }
   | PRINT expr ';'          { $$ = opr(PRINT, 1, $2); }
-
+  | SCAN  expr ';'          { $$ = opr(SCAN,  1, $2); }
   | VARIABLE '=' expr ';'   { $$ = opr('=', 2, id($1), $3); }
   | WHILE '(' expr ')' stmt { $$ = opr(WHILE, 2, $3, $5); }
   | IF '(' expr ')' stmt %prec IFX { $$ = opr(IF, 2, $3, $5); }
